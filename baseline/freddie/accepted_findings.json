@@ -1,0 +1,50 @@
+{
+  "CAL-OE-oot3_2022_23": {
+    "severity": "High",
+    "rationale": "PD underestimated in 2022-23 even after recalibration on 2018 (run 2 before recalibration: O/E 3.6). Origination scorecard has no macro inputs; the rate-hiking cycle raised default rates for loans with the same application profile.",
+    "remediation": "Add a macro-conditioned (PIT) overlay using state unemployment and house prices; until then apply a documented management overlay for any loss-forecasting use.",
+    "owner": "Model developer",
+    "approved_by": "Validator (simulated sign-off)",
+    "review_by": "2027-03-31"
+  },
+  "CAL-JEF-oot3_2022_23": {
+    "severity": "High",
+    "rationale": "Same issue as CAL-OE-oot3_2022_23, confirmed by the Jeffreys test.",
+    "remediation": "See CAL-OE-oot3_2022_23.",
+    "owner": "Model developer",
+    "approved_by": "Validator (simulated sign-off)",
+    "review_by": "2027-03-31"
+  },
+  "CAL-GRADE": {
+    "severity": "High",
+    "rationale": "Grade-level PDs too low on pooled OOT, driven by the 2022-23 level shift; rank ordering holds (CAL-RANK green).",
+    "remediation": "See CAL-OE-oot3_2022_23.",
+    "owner": "Model developer",
+    "approved_by": "Validator (simulated sign-off)",
+    "review_by": "2027-03-31"
+  },
+  "OA-DECAY": {
+    "severity": "Medium",
+    "rationale": "AUC fell to about 0.68 for 2019-21 vintages and recovered to 0.79 for 2022-23. Pandemic-era defaults were driven by an external shock and forbearance policy, which origination attributes cannot predict.",
+    "remediation": "Document as a model limitation; no redevelopment. Report pandemic-window performance separately in monitoring.",
+    "owner": "Model developer",
+    "approved_by": "Validator (simulated sign-off)",
+    "review_by": "2027-06-30"
+  },
+  "MON-CSI": {
+    "severity": "Low",
+    "rationale": "SATO distribution shifted in 2022-23 (CSI about 0.42) while score PSI stayed green. Likely cause: rapid weekly rate moves and the origination-month approximation (first payment minus two months).",
+    "remediation": "Align PMMS to an estimated rate-lock week; monitor SATO CSI quarterly.",
+    "owner": "Model developer",
+    "approved_by": "Validator (simulated sign-off)",
+    "review_by": "2027-06-30"
+  },
+  "CAL-OE-test": {
+    "severity": "Low",
+    "rationale": "After recalibration to the 2018 level, PD overstates defaults for 2014-17 (O/E about 0.66). 2014-16 were unusually benign post-crisis vintages; the bias is conservative.",
+    "remediation": "Calibrate to a long-run central tendency (TTC) estimated over 1999-2023 vintages (optional plan item).",
+    "owner": "Model developer",
+    "approved_by": "Validator (simulated sign-off)",
+    "review_by": "2027-06-30"
+  }
+}

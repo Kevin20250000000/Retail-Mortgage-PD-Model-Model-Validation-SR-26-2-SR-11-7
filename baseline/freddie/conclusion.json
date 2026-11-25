@@ -1,0 +1,10 @@
+{
+  "decision": "Approved with conditions (simulated validation outcome)",
+  "intended_use": "Ranking 12-month default risk of newly originated agency fixed-rate mortgages at origination.",
+  "out_of_scope": "HARP / relief refinances, non-agency loans, seasoned loans, lifetime loss forecasting.",
+  "conditions": [
+    "Not to be used for loss forecasting or stress testing until the macro (PIT) overlay is built and validated.",
+    "Quarterly monitoring of O/E by vintage, score PSI and SATO CSI.",
+    "Performance in pandemic-affected vintages reported separately."
+  ]
+}

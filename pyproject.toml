@@ -1,0 +1,55 @@
+[project]
+name = "pdmodel"
+version = "0.1.0"
+description = "Probability of Default (PD) scorecard with an automated, SR 11-7 style validation suite"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.0",
+    "scipy>=1.11",
+    "scikit-learn>=1.4",
+    "matplotlib>=3.8",
+    "polars>=1.0",
+    "pyarrow>=14",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[tool.setuptools.packages.find]
+include = ["pdmodel*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "data_quality: input data checks",
+    "discrimination: rank-ordering checks (AUC, KS, Gini)",
+    "calibration: predicted vs observed default rate checks",
+    "stability: population and characteristic stability (PSI/CSI)",
+    "conceptual: economic intuition / sign checks",
+    "benchmark: champion vs challenger comparison",
+    "regression: metrics vs approved baseline",
+]
+
+[tool.ruff]
+line-length = 130
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "TID"]
+
+[tool.ruff.lint.per-file-ignores]
+"pdmodel/report.py" = ["E501"]  # inline HTML template
+
+# "Turn every correction into an automatic check" (Lauren Tan):
+# global RNG state makes results non-reproducible, so it is banned outright.
+# Randomness must come from an explicit np.random.Generator passed as an argument.
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+"numpy.random.seed".msg = "Global RNG is banned. Pass an np.random.Generator (see pdmodel.config.make_rng)."
+"numpy.random.rand".msg = "Global RNG is banned. Use rng.random()."
+"numpy.random.randn".msg = "Global RNG is banned. Use rng.standard_normal()."
+"numpy.random.randint".msg = "Global RNG is banned. Use rng.integers()."
+"numpy.random.normal".msg = "Global RNG is banned. Use rng.normal()."
+"numpy.random.uniform".msg = "Global RNG is banned. Use rng.uniform()."
+"numpy.random.choice".msg = "Global RNG is banned. Use rng.choice()."
+"random".msg = "Python's random module is banned. Use an np.random.Generator."
